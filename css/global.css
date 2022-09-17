@@ -35,11 +35,16 @@ body {
 
 .sus-logo:hover {
     transition: all 200ms;
-    transform: rotate(5deg) scale(1.2);
+    transform: rotate(5deg) scale(1.5);
     cursor: pointer;
 }
 
 .sus-logo {
+    transition: all 200ms;
+    height: 10vh;
+}
+
+.row {
     transition: all 200ms;
 }
 

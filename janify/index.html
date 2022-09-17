@@ -48,8 +48,12 @@
       </nav>
       <br><br>
       <div class="container text-white">
+        <a class="btn btn-success font-minecraft-ten fs-5" data-bs-toggle="collapse" href="#sidebar" role="button" aria-expanded="false" aria-controls="sidebar">
+          <i class="bi bi-layout-sidebar"></i> SIDEBAR
+        </a>
+        <br><br>
         <div class="row">
-            <div class="col-auto">
+            <div class="col-auto collapse collapse-horizontal" id="sidebar">
                 <h5 class="font-minecraft-ten"><i class="bi bi-music-note-beamed"></i> MUSIC</h5>
                 <div class="music-container" style="width: 250px;">
                     <img src="../assets/img/musicman/cover/wat.jpeg" height="250" width="250" alt="Coverart" class="music-cover">
@@ -66,7 +70,7 @@
             <div class="col">
                 <h1 class="font-minecraft-ten"><i class="bi bi-music-note-beamed"></i> MUSIC</h1>
                 <p class="fs-5">"there exist a song on spotify, ..." - jan 2022</p>
-                <div class="row row-cols-1 row-cols-md-3 row-cols-sm-4 gy-4 janify-music">
+                <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-4 row-cols-xl-5 gy-4 janify-music">
                     <div class="col">
                         <div class="card">
                             <img class="card-img-top" src="../assets/img/musicman/cover/gulie.jpeg" alt="Gulie's theme">
