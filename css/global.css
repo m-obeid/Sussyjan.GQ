@@ -40,8 +40,11 @@ body {
 }
 
 .sus-logo {
+    height: auto;
+    width: auto;
+    max-height: 100px;
+    max-width: 350px;
     transition: all 200ms;
-    height: 10vh;
 }
 
 .row {
