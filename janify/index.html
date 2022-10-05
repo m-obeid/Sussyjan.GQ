@@ -10,6 +10,18 @@
             background-image: none !important;
             background-color: rgb(3, 21, 0) !important;
         }
+
+        @keyframes bounce {
+          0% {
+            transform: scale(1.1);
+          }
+          25% {
+            transform: scale(1);
+          }
+          100% {
+            transform: scale(1.1);
+          }
+        }
     </style>
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
@@ -57,10 +69,11 @@
                 <h5 class="font-minecraft-ten"><i class="bi bi-music-note-beamed"></i> MUSIC</h5>
                 <div class="music-container" style="width: 250px;">
                     <img src="../assets/img/musicman/cover/wat.jpeg" height="250" width="250" alt="Coverart" class="music-cover">
+                    <br><br>
                     <h3 class="music-title">(play something)</h3>
                     <span class="music-componist">Click on a song to play</span>
                 </div>
-                <audio src="" class="janify-player" controls autoplay loop></audio>
+                <audio src="" class="janify-player" controls autoplay loop onpause="playerPause()" onplay="playerPlay()" onratechange="speedChange()"></audio>
                 <hr>
                 <h5 class="font-minecraft-ten"><i class="bi bi-question"></i> WHAT IS DIS</h5>
                 <div style="width: 250px;">
@@ -151,6 +164,16 @@
                           </div>
                       </div>
                     </div>
+                    <div class="col">
+                      <div class="card h-100">
+                          <img class="card-img-top" src="../assets/img/musicman/cover/wacar.jpeg" alt="Gulie's theme">
+                          <div class="card-body">
+                            <h5 class="card-title">Whatsapp car</h5>
+                            <p class="card-text">John Xina</p>
+                            <a onclick="play('wacar')" class="btn btn-success">listen</a>
+                          </div>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -162,35 +185,48 @@
           const track_data = {
             "howard": {
               "title": "Howard The Alien (1min Version)",
-              "componist": "MAK"
+              "componist": "MAK",
+              "bpm": 82
             },
             "gulie": {
               "title": "Gulie's Theme",
-              "componist": "SonicMaster5000"
+              "componist": "SonicMaster5000",
+              "bpm": 125
             },
             "wiishop": {
               "title": "Wii Shop Channel",
-              "componist": "Nintendo"
+              "componist": "Nintendo",
+              "bpm": 148
             },
             "holdup": {
               "title": "hold up ring ding ding (meme) [sheeesh] (feat. curlydaddy101)",
-              "componist": "Mister Ethan, curlydaddy101"
+              "componist": "Mister Ethan, curlydaddy101",
+              "bpm": 104
             },
             "verbalase": {
               "title": "Verbalase NO NO NO NO",
-              "componist": "Funni guy"
+              "componist": "Funni guy",
+              "bpm": 80
             },
             "balls": {
               "title": "Can I put my balls in yo jaws",
-              "componist": "Jan. real"
+              "componist": "Jan. real",
+              "bpm": 160
             },
             "betty": {
               "title": "Betty det money",
-              "componist": "Yung gravy boi"
+              "componist": "Yung gravy boi",
+              "bpm": 102
             },
             "cbat": {
               "title": "Cbat",
-              "componist": "Hudson Mohawke"
+              "componist": "Hudson Mohawke",
+              "bpm": 160
+            },
+            "wacar": {
+              "title": "Whatsapp car",
+              "componist": "John Xina",
+              "bpm": 117
             }
           }
 
@@ -201,11 +237,32 @@
             const player = document.querySelector(".janify-player");
 
             const meta = track_data[name];
+            const delayTime = 60000 / meta.bpm; // in ms
 
             title.innerHTML = meta.title;
             componist.innerHTML = meta.componist;
             player.setAttribute("src", "../assets/audio/musicman/" + name + ".mp3");
             cover.setAttribute("src", "../assets/img/musicman/cover/" + name  + ".jpeg");
+            cover.setAttribute("style", "animation: bounce 0ms infinite;");
+            cover.style.animationDuration = (60000 / meta.bpm) / player.playbackRate + "ms";
+          }
+
+          function playerPause() {
+            const cover = document.querySelector(".music-cover");
+            cover.style.animationIterationCount = "1";
+          }
+
+          function playerPlay() {
+            const cover = document.querySelector(".music-cover");
+            cover.style.animationIterationCount = "infinite";
+          }
+
+          function speedChange() {
+            const player = document.querySelector(".janify-player");
+            const cover = document.querySelector(".music-cover");
+            const name = player.src.split("/")[7].replace(".mp3", "");
+            const meta = track_data[name];
+            cover.style.animationDuration = (60000 / meta.bpm) / player.playbackRate + "ms"; // math
           }
         </script>
       </div>
